@@ -1,36 +1,39 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>personality quiz</title>
+    <title>Personality Quiz</title>
+    <link rel="stylesheet" href="whatfruitami.css">
+
 </head>
-
-<body>
-
+    <body>
     <div class="quiz-container">
-        <div class="title">personality quiz</div>
+        <div class="title">Personality Quiz</div>
         <div id="question" class="question"></div>
         
         <label class="option">
-            <input type="radio" name="option" value="1" />
+            <input type="radio" name="option" value="1">
             <span class="option1"></span>
         </label>
         
         <label class="option">
-            <input type="radio" name="option" value="2" />
+            <input type="radio" name="option" value="2">
             <span class="option2"></span>
         </label>
         
         <label class="option">
-            <input type="radio" name="option" value="3" />
+            <input type="radio" name="option" value="3">
             <span class="option3"></span>
         </label>
         
         <div class="controls">
-            <button class="previous">previous</button>
-            <button class="next">next</button>
+            <button class="previous hidden">Previous</button>
+            <button class="next">Next</button>
         </div>
     </div>
-
     <div class="result">
-
+        <h1 class="result-title"></h1>
+        <p class="result-description"></p>
     </div>
-</body>
+    <script src="js/whatfruitami.js"></script>
+    </body>
+</html>

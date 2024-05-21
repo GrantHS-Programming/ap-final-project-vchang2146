@@ -74,8 +74,7 @@ const questions = [
 ]
 
 let currentQuestion = 0;
-let score = []
-let selectedAnswersData = [];
+let score = 0;
 const totalQuestions = questions.length;
 
 const container = document.querySelector('.quiz-container');
@@ -85,52 +84,77 @@ const option2 = document.querySelector('.option2');
 const option3 = document.querySelector('.option3');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
-const restartButton = document.querySelector('.restart');
 const result = document.querySelector('.result');
+const resultTitle = document.querySelector('.result-title');
+const resultDescription = document.querySelector('.result-description');
 
-function generateQuestions (index) {
+function generateQuestions(index) {
     const question = questions[index];
-    const option1Total = questions[index].answer1Total;
-    const option2Total = questions[index].answer2Total; 
-    const option3Total = questions[index].answer3Total;
-    
-    questionEl.innerHTML = `${index + 1}. ${question.question}`
-    
-    option1.setAttribute('data-total', `${option1Total}`);
-    option2.setAttribute('data-total', `${option2Total}`);
-    option3.setAttribute('data-total', `${option3Total}`);
-    option1.innerHTML = `${question.answer1}`
-    option2.innerHTML = `${question.answer2}`
-    option3.innerHTML = `${question.answer3}`
+    questionEl.innerHTML = `${index + 1}. ${question.question}`;
+    option1.textContent = question.answer1;
+    option2.textContent = question.answer2;
+    option3.textContent = question.answer3;
 }
 
-function loadNextQuestion () {
-    const selectedOption =
-          document.querySelector('input[type="radio"]:checked')
-    if(!selectedOption){
+function loadNextQuestion() {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (!selectedOption) {
         alert('please select an answer');
         return;
     }
-    
-    const answerScore =
-Number(selectedOption.nextElementSibling.getAttribute('data-total'));
-    score.push(answerScore);
-    selectedAnswersData.push()
-    const totalScore = score.reduce((total,currentNum) => total+ currentNum); 
+
+    const answerScore = Number(selectedOption.value);
+    score += answerScore;
+    selectedOption.checked = false;
+
     currentQuestion++;
-    
-    selectedOption.checked = false; 
-    if(currentQuestion == totalQuestions-1) {
-        nextButton.textContent = 'Finish'; 
+
+    if (currentQuestion === totalQuestions) {
+        displayResult();
+    } else {
+        generateQuestions(currentQuestion);
+        if (currentQuestion > 0) {
+            previousButton.classList.remove('hidden');
+        }
+        if (currentQuestion === totalQuestions - 1) {
+            nextButton.textContent = 'finish';
+        }
     }
-    
-    if(currentQuestion == totalQuestions) {
-        container.style.display = 'none';
-        result.innerHTML = <h1 class = "you are a strawberry"
-        <div class="strawberry">
-        <h1> strawberry </h1>
-        <p>you are a strawberry because you love your alone time more than anything else in the world, and you prefer to stay inside even when all of your friends beg you to go out. your biggest fear in the world isn't heights or some scary bug but instead it's being the center of attention.'</p>
+}
+
+function loadPreviousQuestion() {
+    if (currentQuestion === 0) return;
+
+    currentQuestion--;
+    generateQuestions(currentQuestion);
+    nextButton.textContent = 'next';
+    if (currentQuestion === 0) {
+        previousButton.classList.add('hidden');
     }
+}
+
+function displayResult() {
+    container.style.display = 'none';
+    result.style.display = 'block';
+
+    if (score <= 7) {
+        resultTitle.textContent = 'you are a strawberry';
+        resultDescription.textContent = 'you love your alone time more than anything else in the world, and you prefer to stay inside even when all of your friends beg you to go out. your biggest fear in the world isn\'t heights or some scary bug but instead it\'s being the center of attention.';
+    } else if (score <= 14) {
+        resultTitle.textContent = 'you are a mango';
+        resultDescription.textContent = 'you thrive in social settings and love being the center of attention. you gain energy from being around others and enjoy socializing with everyone. you also tend to want to lead the pack and you/re very my way or the high way mentality';
+
+    } else {
+        resultTitle.textContent = 'you are a pineapple';
+        resultDescription.textContent = 'people have a hard time trying to figure you out. you enjoy both alone time and socializing. you balance your time between hanging out with frien1ds and recharging on your own. you tend to only open up to those who are closest to you.'
+        
+    }
+}
+
+nextButton.addEventListener('click', loadNextQuestion);
+previousButton.addEventListener('click', loadPreviousQuestion);
+
+generateQuestions(currentQuestion);
 
 
 
