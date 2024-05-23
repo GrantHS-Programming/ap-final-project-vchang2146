@@ -1,9 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title> what fruit am i? </title>
 <style>
-p {
-    color:beige
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
 }
-</style>
+
+.quiz-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.question {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.option input {
+    display: none;
+}
+
+.option label {
+    display: block;
+    padding: 10px 20px;
+    background-color: beige;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option label:hover {
+    background-color: #e0e0e0;
+}
+
+.option input:checked + label {
+    background-color: lightblue;
+    color: #fff;
+}
+
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.previous,
+.next {
+    padding: 10px 20px;
+    border: none;
+    background-color: lightblue;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.previous.hidden {
+    display: none;
+}
+
+.result {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.result-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.result-description {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+</body>
+</html>
