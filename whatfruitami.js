@@ -1,77 +1,68 @@
 const questions = [
-  {
-    "question": "which one do you relate to more?",
-    "answer1": "i'm more shy and it takes me awhile to warm up to people.",
-    "answer1Total": "1",
-    "answer2": "i'm really outgoing and I like to talk to people even if it's complete strangers",
-    "answer2Total": "2",
-    "answer3": "it depends on my mood sometimes i like to go out and sometimes i like to stay inside",
-    "answer3Total": "3"
-
-  },
-    
-  {
-    "question": "how do you recharge your social battery?",
-    "answer1": "spending time with mysef.",
-    "answer1Total": "1",
-    "answer2": "spending time with others and socializing.",
-    "answer2Total": "2",
-    "answer3": "it depends on my mood and who i'm with but i either enjoy being by myself or with others.",
-    "answer3Total": "3"
-    
-  },
-    
-  {
-    "question": "what is your go to method for reaching out to someone.",
-    "answer1": "text.",
-    "answer1Total": "1",
-    "answer2": "in person",
-    "answer2Total": "2",
-    "answer3": "phone calls/facetime.",
-    "answer3Total": "3"
-
-  }, 
-    
-  {
-    "question": "when it comes to your apperance, what do you care the most about?",
-    "answer1": "i don't really care.",
-    "answer1Total": "1",
-    "answer2": "i want to look good and i want others to know that too.",
-    "answer2Total": "2",
-    "answer3": "i only care what i think about it.",
-    "answer3Total": "3"
-  },
-  
-  {
-    "question": "what do you do at a party?",
-    "answer1": "stand in a corner and only talk to people when they talk to you first",
-    "answer1Total": "1",
-    "answer2": "be the center of attention and talk to everyone there",
-    "answer2Total": "2",
-    "answer3": "only talk to people that you've already met before",
-    "answer3Total": "3"
-  },
-    
-  {
-    "question": "how do you feel about being the center of attention?",
-    "answer1": "absoutely hate it",
-    "answer1Total": "1",
-    "answer2": "i love it i actually think i thrive being it",
-    "answer2Total": "2",
-    "answer3": "eh... i don't mind it if it's with my close friends but not with other people outside of them.",
-    "answer3Total": "3"
-  },
-    
-  {
-   "question": "which color tone do you like the most?",
-    "answer1": "warmer tones like yellow and red",
-    "answer1Total": "1",
-    "answer2": "cooler tones like blue and green ",
-    "answer2Total": "2",
-    "answer3": "i like both warm and cool tones"",
-    "answer3Total": "3"
-  },
-]
+    {
+        "question": "Which one do you relate to more?",
+        "answer1": "I'm more shy and it takes me awhile to warm up to people.",
+        "answer1Total": "1",
+        "answer2": "I'm really outgoing and I like to talk to people even if it's complete strangers",
+        "answer2Total": "2",
+        "answer3": "It depends on my mood. Sometimes I like to go out and sometimes I like to stay inside",
+        "answer3Total": "3"
+    },
+    {
+        "question": "How do you recharge your social battery?",
+        "answer1": "Spending time by myself.",
+        "answer1Total": "1",
+        "answer2": "Spending time with others and socializing.",
+        "answer2Total": "2",
+        "answer3": "It depends on my mood and who I'm with, but I either enjoy being by myself or with others.",
+        "answer3Total": "3"
+    },
+    {
+        "question": "What is your go-to method for reaching out to someone?",
+        "answer1": "Text.",
+        "answer1Total": "1",
+        "answer2": "In person.",
+        "answer2Total": "2",
+        "answer3": "Phone calls/FaceTime.",
+        "answer3Total": "3"
+    },
+    {
+        "question": "When it comes to your appearance, what do you care the most about?",
+        "answer1": "I don't really care.",
+        "answer1Total": "1",
+        "answer2": "I want to look good and I want others to know that too.",
+        "answer2Total": "2",
+        "answer3": "I only care what I think about it.",
+        "answer3Total": "3"
+    },
+    {
+        "question": "What do you do at a party?",
+        "answer1": "Stand in a corner and only talk to people when they talk to you first.",
+        "answer1Total": "1",
+        "answer2": "Be the center of attention and talk to everyone there.",
+        "answer2Total": "2",
+        "answer3": "Only talk to people that you've already met before.",
+        "answer3Total": "3"
+    },
+    {
+        "question": "How do you feel about being the center of attention?",
+        "answer1": "Absolutely hate it.",
+        "answer1Total": "1",
+        "answer2": "I love it. I actually think I thrive being it.",
+        "answer2Total": "2",
+        "answer3": "Eh... I don't mind it if it's with my close friends but not with other people outside of them.",
+        "answer3Total": "3"
+    },
+    {
+        "question": "Which color tone do you like the most?",
+        "answer1": "Warmer tones like yellow and red.",
+        "answer1Total": "1",
+        "answer2": "Cooler tones like blue and green.",
+        "answer2Total": "2",
+        "answer3": "I like both warm and cool tones.",
+        "answer3Total": "3"
+    }
+];
 
 let currentQuestion = 0;
 let score = 0;
@@ -99,7 +90,7 @@ function generateQuestions(index) {
 function loadNextQuestion() {
     const selectedOption = document.querySelector('input[name="option"]:checked');
     if (!selectedOption) {
-        alert('please select an answer');
+        alert('Please select an answer');
         return;
     }
 
@@ -117,7 +108,7 @@ function loadNextQuestion() {
             previousButton.classList.remove('hidden');
         }
         if (currentQuestion === totalQuestions - 1) {
-            nextButton.textContent = 'finish';
+            nextButton.textContent = 'Finish';
         }
     }
 }
@@ -127,7 +118,7 @@ function loadPreviousQuestion() {
 
     currentQuestion--;
     generateQuestions(currentQuestion);
-    nextButton.textContent = 'next';
+    nextButton.textContent = 'Next';
     if (currentQuestion === 0) {
         previousButton.classList.add('hidden');
     }
@@ -138,16 +129,14 @@ function displayResult() {
     result.style.display = 'block';
 
     if (score <= 7) {
-        resultTitle.textContent = 'you are a strawberry';
-        resultDescription.textContent = 'you love your alone time more than anything else in the world, and you prefer to stay inside even when all of your friends beg you to go out. your biggest fear in the world isn\'t heights or some scary bug but instead it\'s being the center of attention.';
+        resultTitle.textContent = 'You are a Strawberry';
+        resultDescription.textContent = 'You love your alone time more than anything else in the world, and you prefer to stay inside even when all of your friends beg you to go out. Your biggest fear in the world isn\'t heights or some scary bug but instead it\'s being the center of attention.';
     } else if (score <= 14) {
-        resultTitle.textContent = 'you are a mango';
-        resultDescription.textContent = 'you thrive in social settings and love being the center of attention. you gain energy from being around others and enjoy socializing with everyone. you also tend to want to lead the pack and you/re very my way or the high way mentality';
-
+        resultTitle.textContent = 'You are a Pineapple';
+        resultDescription.textContent = 'You enjoy both alone time and socializing. You balance your time between hanging out with friends and recharging on your own.';
     } else {
-        resultTitle.textContent = 'you are a pineapple';
-        resultDescription.textContent = 'people have a hard time trying to figure you out. you enjoy both alone time and socializing. you balance your time between hanging out with frien1ds and recharging on your own. you tend to only open up to those who are closest to you.'
-        
+        resultTitle.textContent = 'You are an Mango';
+        resultDescription.textContent = 'You thrive in social settings and love being the center of attention. You gain energy from being around others and enjoy socializing with everyone.';
     }
 }
 
@@ -155,6 +144,7 @@ nextButton.addEventListener('click', loadNextQuestion);
 previousButton.addEventListener('click', loadPreviousQuestion);
 
 generateQuestions(currentQuestion);
+
 
 
 
